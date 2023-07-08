@@ -1,0 +1,145 @@
+<MainScreenView>
+    orientation: "vertical"
+
+    MDNavigationLayout:
+
+        MDScreenManager:
+
+            MDScreen:
+                id: screen_
+                md_bg_color: "#021221"
+
+                MDSpinner:
+                    id: spinner
+                    size_hint: None, None
+                    size: dp(46), dp(46)
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+                    active: True
+
+                MDBoxLayout:
+                    id: contrent
+                    orientation: 'vertical'
+                    spacing: 10
+                    opacity: 0
+
+                    MDBoxLayout:
+                        orientation: "horizontal"
+                        size_hint_y: None
+                        height: "40dp"
+                        padding: 0, 0, 10, 0
+                        spacing: 15
+
+                        MDIconButton:
+                            icon: "menu"
+                            pos_hint: {"center_y": .5}
+                            on_press: nav_drawer.set_state("open")
+
+                        MDLabel:
+                            text: "MovieSurfer"
+                            font_name: "./assets/fonts/RINGM___.TTF"
+
+                        FitImage:
+                            size_hint: None, None
+                            width: "35dp"
+                            height: "35dp"
+                            radius: 25
+                            source: "./assets/images/oscar.png"
+                            pos_hint: {"center_y": .5}
+
+                    MDBoxLayout:
+                        size_hint: .9, None
+                        height: "50dp"
+                        md_bg_color: "#122f3f"
+                        pos_hint: {"top": .97, "center_x": .5}
+                        padding: 30, 0, 0, 0
+                        radius: 20
+
+                        MDTextField:
+                            id: text_field
+                            hint_text: "Search..."
+                            pos_hint: {"center_y": .5}
+                            line_color_normal: '#122f3f'
+                            line_color_focus: '#122f3f'
+                            hint_text_color_normal: "#f6faff"
+                            hint_text_color_focus: "#f6faff"
+                            text_color_focus: "#f6faff"
+
+                        MDIconButton:
+                            icon: "magnify"
+                            pos_hint: {"center_y": .5}
+                            pos: text_field.width - self.width + dp(8), 0
+                            theme_icon_color: "Custom"
+                            icon_color: "#f6faff"
+                            on_press: root.controller.search_film(text_field.text)
+
+                    MDScrollView:
+                        on_scroll_y: root.on_scroll_y(self, args[1])
+
+                        MDBoxLayout:
+                            orientation: "vertical"
+                            adaptive_height: True
+                            padding: 10
+                            spacing: 10
+
+                            MDLabel:
+                                id: recommend
+                                text: "Recommend:"
+                                font_size: "20sp"
+                                font_name: "./assets/fonts/Nunito-Regular.ttf"
+                                size_hint: 1, None
+                                height: self.texture_size[1]
+
+                            MDScrollView:
+                                id: scroll_box
+                                do_scroll_x: True
+                                do_scroll_y: False
+                                size_hint_y: None
+                                height: 250
+
+                                MDBoxLayout:
+                                    id: top_box
+                                    adaptive_size: True
+                                    spacing: 15
+
+                            MDLabel:
+                                id: text_
+                                text: "You May Like:"
+                                font_size: "20sp"
+                                font_name: "./assets/fonts/Nunito-Regular.ttf"
+                                size_hint: 1, None
+                                height: self.texture_size[1]
+
+                            MDList:
+                                id: list
+                                spacing: 15
+
+        MDNavigationDrawer:
+            id: nav_drawer
+            radius: (0, 0, 0, 0)
+
+            MDNavigationDrawerMenu:
+
+                MDNavigationDrawerItem
+                    icon: "home"
+                    text: "Головна"
+                    selected: True
+
+                MDNavigationDrawerItem
+                    icon: "drama-masks"
+                    text: "Жанр"
+                    on_press: root.manager.current = 'genre screen'
+
+                MDNavigationDrawerItem
+                    icon: "movie-open"
+                    text: "Режисер"
+                    on_press: root.manager.current = 'director screen'
+
+                MDNavigationDrawerItem
+                    icon: "rolodex"
+                    text: "Рік"
+                    on_press: root.manager.current = 'year screen'
+
+                MDNavigationDrawerItem
+                    icon: "account-details"
+                    text: "Мій список"
+                    on_press: root.manager.current = 'own screen'

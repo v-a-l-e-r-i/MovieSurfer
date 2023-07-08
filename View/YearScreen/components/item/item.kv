@@ -1,0 +1,48 @@
+<YearItemFilm>:
+    size_hint: 1, None
+    height: self.width * 1.375
+    radius: 18
+
+    MDScreen:
+
+        FitImage:
+            source: root.source
+            radius: 18
+
+        FitImage:
+            source: "./assets/images/background.png"
+            radius: 18
+
+        MDBoxLayout:
+            size_hint: 1, 1
+            radius: 18
+            padding: 10
+            orientation: "vertical"
+
+            MDAnchorLayout:
+                anchor_x: 'right'
+                anchor_y: 'center'
+                pos_hint: {"top": 1}
+                size_hint_y: None
+                height: 40
+
+                MDRectangleFlatIconButton:
+                    icon: "star"
+                    font_size: "14sp"
+                    text: str(root.grade)
+                    font_name: "./assets/fonts/RobotoSlab-Regular.ttf"
+                    theme_text_color: "Custom"
+                    text_color: "white"
+                    theme_icon_color: "Custom"
+                    icon_color: "orange"
+                    md_bg_color: .161, .161, .161, .8
+                    line_color: 0, 0, 0, 0
+
+            MDWidget:
+
+            MDLabel:
+                font_name: "./assets/fonts/RobotoSlab-Regular.ttf"
+                text: root.title
+                font_size: "14sp"
+                size_hint: 1, None
+                height: self.texture_size[1]

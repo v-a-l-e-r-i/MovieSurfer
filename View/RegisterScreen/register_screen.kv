@@ -1,0 +1,128 @@
+<RegisterScreenView>
+
+    FitImage:
+        source: "./assets/images/blur_background.jpg"
+
+    MDLabel:
+        text: "CREATE ACCOUNT"
+        font_name: "./assets/fonts/RINGM___.TTF"
+        size_hint: 1, None
+        height: self.texture_size[1]
+        font_size: "32sp"
+        halign: "center"
+        pos_hint: {"center_x": .5, "top": .8}
+
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing: 15
+        size_hint: .9, None
+        height: 130
+        pos_hint: {"center_x": .5, "top": .5}
+
+        MDBoxLayout:
+            size_hint: 1, None
+            height: "50dp"
+            md_bg_color: .161, .161, .161, .5
+            padding: 5, 0, 0, 0
+            spacing: 10
+            radius: 20
+
+            MDIconButton:
+                icon: "account-circle-outline"
+                pos_hint: {"center_y": .5}
+                pos: username.width - self.width + dp(8), 0
+                theme_text_color: "Hint"
+
+            MDTextField:
+                id: username
+                hint_text: "Username..."
+                pos_hint: {"center_y": .5}
+                line_color_normal: .161, .161, .161, 0
+                line_color_focus: .161, .161, .161, 0
+                hint_text_color_normal: "#d9d9d9"
+                hint_text_color_focus: "#d9d9d9"
+                text_color_normal: [.486, .482, .486]
+                on_text: root.change_text_color()
+
+            MDLabel:
+                size_hint_x: None
+                width: 5
+
+        MDBoxLayout:
+            size_hint: 1, None
+            height: "50dp"
+            md_bg_color: .161, .161, .161, .5
+            padding: 5, 0, 0, 0
+            spacing: 10
+            radius: 20
+
+            MDIconButton:
+                icon: "email-outline"
+                pos_hint: {"center_y": .5}
+                pos: username.width - self.width + dp(8), 0
+                theme_text_color: "Hint"
+
+            MDTextField:
+                id: email
+                hint_text: "Email..."
+                pos_hint: {"center_y": .5}
+                validator: "email"
+                error_color: .965, .98, 1
+                line_color_normal: .161, .161, .161, 0
+                line_color_focus: .161, .161, .161, 0
+                hint_text_color_normal: "#d9d9d9"
+                hint_text_color_focus: "#d9d9d9"
+                text_color_normal: [.486, .482, .486]
+                on_text: self.text_color_normal = [.486, .482, .486]
+
+            MDLabel:
+                size_hint_x: None
+                width: 5
+
+        MDBoxLayout:
+            size_hint: 1, None
+            height: "50dp"
+            md_bg_color: .161, .161, .161, .5
+            padding: 5, 0, 0, 0
+            spacing: 10
+            radius: 20
+
+            MDIconButton:
+                icon: "lock"
+                pos_hint: {"center_y": .5}
+                pos: username.width - self.width + dp(8), 0
+                theme_text_color: "Hint"
+
+            MDTextField:
+                id: passw
+                hint_text: "Password..."
+                pos_hint: {"center_y": .5}
+                line_color_normal: .161, .161, .161, 0
+                line_color_focus: .161, .161, .161, 0
+                hint_text_color_normal: "#d9d9d9"
+                hint_text_color_focus: "#d9d9d9"
+                text_color_normal: [.486, .482, .486]
+                on_text: self.text_color_normal = [.486, .482, .486]
+
+            MDLabel:
+                size_hint_x: None
+                width: 5
+
+    MDFillRoundFlatButton:
+        text: "Continue"
+        font_size: "20sp"
+        md_bg_color: "#92f4f7"
+        theme_text_color: "Custom"
+        text_color: "#091824"
+        size_hint_x: .8
+        pos_hint: {"center_x": .5, "top": .15}
+        on_press: root.controller.create_account(username.text, email.text, passw.text)
+
+    MDTextButton:
+        size_hint_x: 1
+        padding: 10
+        text: "Log In"
+        on_press: root.manager.current = "login screen"
+        halign: 'center'
+        theme_text_color: 'Custom'
+        text_color: "#92f4f7"

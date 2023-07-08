@@ -1,0 +1,78 @@
+<OwnScreenView>
+    orientation: "vertical"
+
+    MDNavigationLayout:
+
+        MDScreenManager:
+
+            MDScreen:
+                md_bg_color: "#021221"
+
+                MDBoxLayout:
+                    id: toolbar
+                    orientation: 'vertical'
+                    spacing: 10
+
+
+                    MDBoxLayout:
+                        orientation: "horizontal"
+                        size_hint_y: None
+                        height: "40dp"
+                        padding: 0, 0, 10, 0
+                        spacing: 15
+
+                        MDIconButton:
+                            icon: "menu"
+                            pos_hint: {"center_y": .5}
+                            on_press: nav_drawer.set_state("open")
+
+                        MDLabel:
+                            text: "MovieSurfer"
+                            font_name: "./assets/fonts/RINGM___.TTF"
+
+                        FitImage:
+                            size_hint: None, None
+                            width: "35dp"
+                            height: "35dp"
+                            radius: 25
+                            source: "./assets/images/oscar.png"
+                            pos_hint: {"center_y": .5}
+
+                    MDBoxLayout:
+                        padding: 0, 20
+
+                        MDSwiper:
+                            id: swiper_md
+                            width_mult: 2
+
+        MDNavigationDrawer:
+            id: nav_drawer
+            radius: (0, 0, 0, 0)
+
+            MDNavigationDrawerMenu:
+
+                MDNavigationDrawerItem
+                    icon: "home"
+                    text: "Головна"
+                    on_press: root.manager.current = 'main screen'
+
+                MDNavigationDrawerItem
+                    icon: "drama-masks"
+                    text: "Жанр"
+                    on_press: root.manager.current = 'genre screen'
+
+                MDNavigationDrawerItem
+                    icon: "movie-open"
+                    text: "Режисер"
+                    on_press: root.manager.current = 'director screen'
+
+                MDNavigationDrawerItem
+                    icon: "rolodex"
+                    text: "Рік"
+                    on_press: root.manager.current = 'year screen'
+
+                MDNavigationDrawerItem
+                    icon: "account-details"
+                    text: "Мій список"
+                    selected: True
+

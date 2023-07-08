@@ -1,0 +1,134 @@
+<YearScreenView>
+    orientation: "vertical"
+
+    MDNavigationLayout:
+
+        MDScreenManager:
+
+            MDScreen:
+                md_bg_color: "#021221"
+
+                MDBoxLayout:
+                    id: toolbar
+                    orientation: 'vertical'
+                    spacing: 10
+
+
+                    MDBoxLayout:
+                        orientation: "horizontal"
+                        size_hint_y: None
+                        height: "40dp"
+                        padding: 0, 0, 10, 0
+                        spacing: 15
+
+                        MDIconButton:
+                            icon: "menu"
+                            pos_hint: {"center_y": .5}
+                            on_press: nav_drawer.set_state("open")
+
+                        MDLabel:
+                            text: "MovieSurfer"
+                            font_name: "./assets/fonts/RINGM___.TTF"
+
+                        FitImage:
+                            size_hint: None, None
+                            width: "35dp"
+                            height: "35dp"
+                            radius: 25
+                            source: "./assets/images/oscar.png"
+                            pos_hint: {"center_y": .5}
+
+                    ScrollView:
+                        do_scroll_y: False
+                        size_hint_y: None
+                        height: 50
+                        md_bg_color: "#ff642e"
+
+                        MDBoxLayout:
+                            id: year_box
+                            adaptive_size: True
+                            padding: 10
+                            spacing: 10
+
+                    ScrollView:
+                        on_scroll_y: root.on_scroll_y(self, args[1])
+
+                        MDBoxLayout:
+                            orientation: 'vertical'
+                            adaptive_height: True
+
+                            MDBoxLayout:
+                                adaptive_height: True
+                                height: 40
+                                spacing: 5
+                                padding: 10, 0
+
+                                MDLabel:
+
+                                MDBoxLayout:
+                                    id: box_grid
+                                    adaptive_size: True
+                                    md_bg_color: 0, 0, 0, .4
+                                    radius: 15
+
+                                    MDIconButton:
+                                        id: grid_icon
+                                        icon: 'view-grid'
+                                        theme_text_color: 'Custom'
+                                        text_color: .522, .71, .765
+                                        on_press: root.grid_select()
+
+                                MDBoxLayout:
+                                    id: box_stream
+                                    adaptive_size: True
+                                    md_bg_color: 0, 0, 0, 0
+                                    radius: 15
+
+                                    MDIconButton:
+                                        id: stream_icon
+                                        icon: 'view-stream'
+                                        theme_text_color: 'Custom'
+                                        text_color: .706, .776, .796
+                                        on_press: root.stream_select()
+
+
+                            MDGridLayout:
+                                id: item_grid
+                                cols: 2
+                                adaptive_height: True
+                                spacing: 10
+                                padding: 10
+
+        MDNavigationDrawer:
+            id: nav_drawer
+            radius: (0, 0, 0, 0)
+
+            MDNavigationDrawerMenu:
+
+                MDNavigationDrawerItem
+                    icon: "home"
+                    text: "Головна"
+                    on_press: root.manager.current = 'main screen'
+
+                MDNavigationDrawerItem
+                    icon: "drama-masks"
+                    text: "Жанр"
+                    on_press: root.manager.current = 'genre screen'
+
+                MDNavigationDrawerItem
+                    icon: "movie-open"
+                    text: "Режисер"
+                    on_press: root.manager.current = 'director screen'
+
+                MDNavigationDrawerItem
+                    icon: "rolodex"
+                    text: "Рік"
+                    selected: True
+
+                MDNavigationDrawerItem
+                    icon: "account-details"
+                    text: "Мій список"
+                    on_press: root.manager.current = 'own screen'
+
+
+

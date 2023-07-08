@@ -1,0 +1,102 @@
+<MySwiper>
+
+    MDScreen:
+        radius: [20,]
+
+        FitImage:
+            size_hint: 1, None
+            height: 390
+            source: root.source
+            pos_hint: {'center_x': .5, 'top': 1}
+            radius: [20,]
+
+        FitImage:
+            size_hint: 1, None
+            height: 390
+            source: "./assets/images/background.png"
+            pos_hint: {'center_x': .5, 'top': 1}
+            radius: [20,]
+
+        MDBoxLayout:
+            adaptive_height: True
+            size_hint_x: None
+            width: 100
+            md_bg_color: .161, .161, .161, .5
+            pos_hint: {'top': .4, "right": 1}
+
+            MDLabel:
+                text: f"Рік: {root.year}"
+                font_size: '16sp'
+                font_name: "./assets/fonts/RobotoSlab-Regular.ttf"
+                size_hint: 1, None
+                height: self.texture_size[1]
+                halign: 'center'
+
+        MDRectangleFlatIconButton:
+            icon: "star"
+            text: str(root.grade)
+            font_size: "14sp"
+            font_name: "./assets/fonts/RobotoSlab-Regular.ttf"
+            theme_text_color: "Custom"
+            text_color: "white"
+            theme_icon_color: "Custom"
+            icon_color: "orange"
+            md_bg_color: .161, .161, .161, .5
+            line_color: 0, 0, 0, 0
+            pos_hint: {"top": .98, "center_x": .82}
+
+        MDBoxLayout:
+            adaptive_size: True
+            pos_hint: {"top": .98, "center_x": .12}
+            md_bg_color: .161, .161, .161, .5
+            radius: 13
+
+            MDIconButton:
+                icon_size: "20sp"
+                icon: "minus"
+                on_press: root.manager.controller.delete_film(root.title, root)
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            adaptive_height: True
+            spacing: "5dp"
+            padding: 10
+            pos_hint: {"top": .35}
+
+            MDLabel:
+                text: root.title
+                font_size: '18sp'
+                font_name: "./assets/fonts/RobotoSlab-Regular.ttf"
+                size_hint: 1, None
+                height: self.texture_size[1]
+                halign: 'center'
+
+            MDGridLayout:
+                id: genre_grid
+                cols: 3
+                adaptive_size: True
+                pos_hint: {"center_x": .5}
+
+            MDLabel:
+                text: f"Тривалість: {root.timeline}"
+                font_size: '13sp'
+                font_name: "./assets/fonts/RobotoSlab-Regular.ttf"
+                size_hint: 1, None
+                height: self.texture_size[1]
+                halign: 'center'
+
+            MDLabel:
+                text: f"Режисер: {root.director}"
+                font_size: '13sp'
+                font_name: "./assets/fonts/RobotoSlab-Regular.ttf"
+                size_hint: 1, None
+                height: self.texture_size[1]
+                halign: 'center'
+
+            MDRoundFlatButton:
+                text: "Опис"
+                font_name: "./assets/fonts/RobotoSlab-Regular.ttf"
+                size_hint_x: .7
+                text_color: "white"
+                pos_hint: {'center_x': .5}
+                on_press: root.show_dialog()

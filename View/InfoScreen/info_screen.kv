@@ -1,0 +1,131 @@
+<InfoScreenView>
+    md_bg_color: "#021221"
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: 15
+        spacing: 10
+
+        MDScreen:
+            size_hint: 1, None
+            height: root.height * .65
+            pos_hint: {"center_x": .5, "top": .98}
+
+            FitImage:
+                size_hint: 1, 1
+                source: root.source
+                radius: 13
+
+            FitImage:
+                size_hint: 1, 1
+                source: "./assets/images/background.png"
+                radius: 13
+
+            MDBoxLayout:
+                adaptive_size: True
+                pos_hint: {"top": .98, "x": .03}
+                md_bg_color: .161, .161, .161, .5
+                radius: 13
+
+                MDIconButton:
+                    icon_size: "20sp"
+                    icon: "arrow-left"
+                    on_press: root.controller.back_to_main()
+
+            MDBoxLayout:
+                adaptive_size: True
+                pos_hint: {"top": .98, "center_x": .9}
+                md_bg_color: .161, .161, .161, .5
+                radius: 13
+
+                MDIconButton:
+                    icon_size: "20sp"
+                    icon: "plus"
+                    on_press: root.controller.add_film_to_base(root.title)
+
+            MDBoxLayout:
+                padding: 10
+                adaptive_height: True
+
+                MDBoxLayout:
+                    orientation: 'vertical'
+
+                    MDLabel:
+                        text: root.title
+                        font_name: "./assets/fonts/RobotoSlab-Regular.ttf"
+                        size_hint: 1, None
+                        height: self.texture_size[1]
+                        font_size: "20sp"
+
+                    MDLabel:
+                        text: f"Тривалість: {root.timeline}"
+                        font_name: "./assets/fonts/RobotoSlab-Regular.ttf"
+                        size_hint: 1, None
+                        height: self.texture_size[1]
+                        font_size: "12sp"
+
+                MDRectangleFlatIconButton:
+                    icon: "star"
+                    text: str(root.grade)
+                    font_size: "14sp"
+                    font_name: "./assets/fonts/RobotoSlab-Regular.ttf"
+                    theme_text_color: "Custom"
+                    text_color: "white"
+                    theme_icon_color: "Custom"
+                    icon_color: "orange"
+                    md_bg_color: .161, .161, .161, .5
+                    line_color: 0, 0, 0, 0
+                    pos_hint: {"center_y": .5}
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            spacing: 10
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                spacing: 5
+                adaptive_height: True
+
+                MDLabel:
+                    text: "Жанр:"
+                    font_name: "./assets/fonts/RobotoSlab-Regular.ttf"
+                    font_size: '20sp'
+                    size_hint: 1, None
+                    height: self.texture_size[1]
+
+                MDGridLayout:
+                    id: grid_genre
+                    cols: 3
+                    spacing: 15
+                    adaptive_height: True
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                spacing: 5
+
+                MDLabel:
+                    text: "Опис:"
+                    font_name: "./assets/fonts/RobotoSlab-Regular.ttf"
+                    font_size: '20sp'
+                    size_hint: 1, None
+                    height: self.texture_size[1]
+
+                MDScrollView:
+                    do_scroll_y: True
+                    MDLabel:
+                        text: root.description
+                        font_size: '12sp'
+                        font_name: "./assets/fonts/RobotoSlab-Regular.ttf"
+                        size_hint: 1, None
+                        height: self.texture_size[1]
+
+
+
+
+
+
+
+
+
+
+

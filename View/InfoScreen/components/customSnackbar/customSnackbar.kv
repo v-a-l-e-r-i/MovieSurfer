@@ -1,0 +1,18 @@
+<AddCustomSnackbar>
+    MDIconButton:
+        id: icon
+        pos_hint: {'center_y': .5}
+        icon: root.icon
+        theme_icon_color: "Custom"
+        icon_color: "green"
+
+    MDLabel:
+        id: text_bar
+        size_hint_y: None
+        height: self.texture_size[1]
+        text: root.text
+        theme_text_color: 'Custom'
+        text_color: "#292929"
+        shorten: True
+        shorten_from: 'right'
+        pos_hint: {'center_y': .5}
